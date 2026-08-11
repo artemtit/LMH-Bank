@@ -1,0 +1,22 @@
+[Unit]
+Description=LMH Bank Telegram bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/lmh-bank
+ExecStart=/opt/lmh-bank/.venv/bin/python run.py
+EnvironmentFile=/opt/lmh-bank/.env
+Restart=always
+RestartSec=5
+User=lmhbank
+Group=lmhbank
+# Базовая изоляция
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+
+[Install]
+WantedBy=multi-user.target
